@@ -1,10 +1,19 @@
+"use client"
+
 import React, { Fragment } from "react";
 import CustomBreadcrumb from "@/components/custom-breadcrumb";
-import { Input } from "@/components/ui/input";
 import { SearchInput } from "@/components/search-input";
 import { BellRing } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+
+  const pathname = usePathname();
+  
+  if (pathname == "/") {
+    return null;
+  }
+
   return (
     <div className="flex items-center justify-between px-5 py-2">
       <CustomBreadcrumb />
