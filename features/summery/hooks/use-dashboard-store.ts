@@ -1,9 +1,6 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { DashboardData } from "../api/data";
 import { CategoryType, WidgetType } from "@/types";
-import { useQueryClient } from "@tanstack/react-query";
-import { showToast } from "@/lib/toast";
 
 type AllWidgets = {
   widgetId: string;

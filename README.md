@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Dashboard](./public/screenshots/app_image.png)
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+  <h2 style="font-family: 'Georgia', serif; font-weight: bold; font-size: 2rem; color: #FFE5CA;" align="center">Widget Manager</h2>
+</div>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📚 Table of Contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 🤖 [Introduction](#-introduction)
+1. ✨ [Features](#-features)
+1. 🧑‍💻 [Tech Stack](#-tech-stack)
+1. 🔧 [Local Setup](#-local-setup)
+1. 📄 [Feedback](#-feedback)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🤖 Introduction
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This web application allows users to dynamically manage widgets within categories. Users can add, update, and remove widgets, as well as search through all available widgets. The application is built with React and uses Zustand for state management.
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+- **📊 Dynamic Widget Management**: Easily add, update, and remove widgets within various categories.
+- **📂 Category-Based Organization**: Widgets are grouped by categories for better organization and navigation.
+- **🔍 Search Functionality**: Quickly search and filter through all available widgets.
+- **➕ Add New Widgets**: User-friendly interface to add new widgets, including name and custom text.
+- **❌ Remove Widgets**: Simple and intuitive cross icon to remove widgets from categories.
+- **🗃 Manage Categories**: Add or remove widgets directly from the category list.
+- **🔄 Real-time State Management**: Efficiently manage application state using Zustand (or another state management tool).
+- **🎨 Styled with TailwindCSS**: Sleek, modern, and fully responsive design.
+- **🌐 Built with Next.js 14**: Utilizing the latest features of Next.js.
+- **🚀 Deployed on Vercel**: Fast and scalable deployment on Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧑‍💻 Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- ⚛️ [React](https://reactjs.org/): UI library for building user interfaces.
+- ⬜ [Next.js](https://nextjs.org/): React framework for server-side rendering and static site generation.
+- 💨 [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework for rapid UI development.
+- 💎 [Shadcn UI](https://shadcn.dev/): UI components for React with a focus on accessibility.
+- <span style="background-color:#1e90ff;color:white;padding:1px 3px;border-radius:3px;font-size:0.7em;margin-left:3px;">TS</span> [TypeScript](https://www.typescriptlang.org/): Superset of JavaScript adding static types.
 
-## Deploy on Vercel
+- 🛠️ [Zod](https://zod.dev/): Schema validation for TypeScript and JavaScript.
+- 🐻 [Zustand](https://zustand-demo.pmnd.rs/): Lightweight state management for React.
+- 🚀 [Vercel](https://vercel.com/): Platform for frontend deployment and serverless functions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙️ Local setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Vinod-Mane3021/Accuknox-Dashboard-Assignment.git
+   ```
+
+2. Go to project folder
+   ```bash
+   cd Accuknox-Dashboard-Assignment
+   ```
+3. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+4. Start the development server:
+   ```bash
+   pnpm run dev
+   ```
+
+<!--
+
+## 📝 Contributing
+
+If you’d like to contribute to this project, please fork the repository and submit a pull request with your changes. For more details, see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. -->
+
+## \***\*📄 Feedback\*\***
+
+I'd be happy to connect with you! <br>
+
+<a href="https://www.linkedin.com/in/vinod-mane-a74817220/" target="_blank">
+  <img style="border-radius: 3px;" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"  target="_blank">
+</a> 
+<a href="https://x.com/VinodMane21" target="_blank">
+  <img height="27" src="https://img.shields.io/twitter/follow/VinodMane21?logoSize=100" alt="Twitter Badge" />
+</a>
