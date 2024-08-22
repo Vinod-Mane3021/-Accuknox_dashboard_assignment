@@ -37,10 +37,11 @@ export type WidgetUpdateWithCategory = {
 interface GetAllCategoriesType {
   Loading: boolean;
   data: CategoryType[];
-};
+}
 
 interface DashboardState {
   categories: CategoryType[];
+  searchQuery: string;
   getAllCategories: () => GetAllCategoriesType;
   addWidget: (categoryId: string, widget: WidgetType) => void;
   deleteWidget: (categoryId: string, widgetId: string) => void;
@@ -52,13 +53,15 @@ interface DashboardState {
   updateWidgets: (update: WidgetUpdateWithCategory[]) => void;
   addCategory: (category: CategoryType) => void;
   removeCategory: (categoryId: string) => void;
-  searchWidgets: (query: string) => WidgetType[];
+  searchWidgets: (query: string, categoryId?: string) => void;
+  setSearchQuery:(query: string) => void;
   getAllWidgets: () => AllWidgets[];
 }
 
 export const useDashboardStore = create<DashboardState>((set, get) => {
   return {
     categories: DashboardData.categories,
+    searchQuery: "",
 
     getAllCategories: (): GetAllCategoriesType => {
       return {
@@ -154,17 +157,49 @@ export const useDashboardStore = create<DashboardState>((set, get) => {
       }));
     },
 
-    searchWidgets: (query: string): WidgetType[] => {
-      const allWidgets = get()
-        .categories.flatMap((category) => category.widgets)
-        .filter((widget) => widget !== undefined);
+    searchWidgets: (query: string, categoryId?: string) => {
+      console.log("query  --> ", query);
 
-      const filtered = allWidgets.filter((widget) => {
-        return (
-          widget && widget.name.toLowerCase().includes(query.toLowerCase())
-        );
-      });
-      return filtered;
+      if(!query || query.length == 0) {
+        console.log("set otiginal --------> query")
+        set({ categories: DashboardData.categories });
+        return;
+      }
+
+      const currentCategories = get().categories;
+
+      // Filter the categories based on the categoryId, if provided
+      const filteredCategories = categoryId
+        ? currentCategories.filter((c) => c.id === categoryId)
+        : currentCategories;
+
+
+      const filterCategoriesForFilteredWidgets = filteredCategories
+        .map((category) => {
+          if (!query) {
+            return category; // If there's no query, return the category as is
+          }
+
+          // Filter widgets within the category based on the search query
+          const matchingWidgets = category.widgets?.filter((widget) =>
+            widget.name.toLowerCase().includes(query.toLowerCase())
+          )
+
+           // Return the category with matching widgets if any exist, otherwise skip it
+            return matchingWidgets?.length
+          ? { ...category, widgets: matchingWidgets }
+          : null;
+        })
+        .filter((category) => category !== null); // Filter out any null categories
+
+      console.log({ filterCategoriesForFilteredWidgets });
+
+      // Set the updated categories back into the state
+      set({ categories: filterCategoriesForFilteredWidgets });
+    },
+
+    setSearchQuery: (query: string) => {
+      set({ searchQuery: query })
     },
 
     getAllWidgets: () => {

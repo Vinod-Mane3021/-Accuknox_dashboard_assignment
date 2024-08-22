@@ -15,15 +15,15 @@ const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex items-center w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors",
+          className,
+          "flex items-center rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors",
           onFocusInput ? "ring-1 ring-ring" : "outline-none",
-          className
         )}
       >
         <Search className="text-gray-400 size-5 mr-2" />
         <input
           type={type}
-          className="outline-none"
+          className="outline-none w-full"
           ref={ref}
           {...props}
           onFocus={() => setOnFocusInput(true)}
