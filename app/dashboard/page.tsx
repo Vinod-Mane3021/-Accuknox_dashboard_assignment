@@ -57,9 +57,9 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="max-w-screen-2xl mx-auto w-full flex flex-col bg-[#f0f5fa] justify-center px-5 py-10">
-      <div className="flex items-center justify-between">
-        <p className="font-bold text-lg">CNAPP Dashboard</p>
+    <div className="w-full flex flex-col bg-[#f0f5fa] justify-center px-1 sm:px-4 md:px-10 py-10">
+      <div className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+        <p className="font-bold text-sm sm:text-base md:text-xl">CNAPP Dashboard</p>
         <div className="flex items-center gap-x-2">
           <Button
             variant="outline"
@@ -77,7 +77,7 @@ const DashboardPage = () => {
           </Button>
           <Button
             variant="outline"
-            className="flex w-full p-1 gap-x-1 border border-[#14147d]"
+            className="flex w-fit p-1 gap-x-1 border border-[#14147d]"
             size="sm"
           >
             <Clock4 fill="#14147d" color="white" size={18} />
@@ -93,7 +93,7 @@ const DashboardPage = () => {
 
           <span
             onClick={() => onOpen(category.id)}
-            className="flex items-center hover:underline hover:text-blue-500 cursor-pointer"
+            className="flex items-center hover:underline hover:text-blue-500 cursor-pointer w-fit"
           >
             <p className="font-semibold mx-2 ">{category.name}</p>
             <PanelRightOpen size={18} className="" />

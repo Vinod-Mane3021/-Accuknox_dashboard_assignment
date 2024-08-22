@@ -68,9 +68,8 @@ const ChartPeiVariant = ({ data }: Props) => {
         />
         <Tooltip content={<CustomTooltip />} />
         <Pie
-          className="bg-red-600"
           data={data}
-          cx="30%"
+          cx="25%"
           cy="50%"
           outerRadius={75}
           innerRadius={50}

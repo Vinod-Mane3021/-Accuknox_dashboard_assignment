@@ -79,7 +79,7 @@ const DataCard = ({ widget, type, categoryId }: DataCardProps) => {
 
   if (type === "add_widget") {
     return (
-      <Card className="border-none drop-shadow-sm w-full my-3 mx-2 h-60">
+      <Card className="border-none drop-shadow-sm w-full my-3 mx-1 h-60">
         <div className="h-full w-full flex items-center justify-center">
           <Button
             onClick={handleCreateWidget}
@@ -96,10 +96,10 @@ const DataCard = ({ widget, type, categoryId }: DataCardProps) => {
   return (
     <>
       <ConfirmationDialog />
-      <Card className="border-none drop-shadow-sm w-full my-3 mx-2 h-60">
+      <Card className="border-none drop-shadow-sm w-full my-3 mx-1 h-60">
         <CardHeader className="flex flex-row items-center justify-between gap-x-4">
           <div className="space-y-1 flex items-center w-full justify-between">
-            <CardTitle className="text-base line-clamp-1">
+            <CardTitle className="text-sm sm:text-base line-clamp-1">
               {widget?.name}
             </CardTitle>
             <X

@@ -1,6 +1,6 @@
 "use client";
 import { useOpenWidget } from "@/features/widgets/hooks/use-open-widget";
-import { CategoryType, LabelValueType, WidgetType } from "@/types";
+import { LabelValueType } from "@/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   UpdatedWidget,
@@ -17,17 +17,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { toast } from "@/components/ui/use-toast";
-import { Plus, Trash2 } from "lucide-react";
 import Actions from "./actions";
 import { showToast } from "@/lib/toast";
-import { Input } from "@/components/ui/input";
 import { SearchInput } from "@/components/search-input";
 import { useMemo, useState } from "react";
 
@@ -138,8 +134,8 @@ const Widgets = ({ categoryOptions }: WidgetFormType) => {
 
   return (
     <div className="h-full w-full ">
-      <div className="flex flex-col">
-        <Tabs defaultValue={categoryId} className="flex-col w-full">
+      <div className="flex flex-col h-full">
+        <Tabs defaultValue={categoryId} className="flex flex-col w-full h-full">
           <TabsList style={{ marginBottom: 10 }} className="flex justify-start">
             {categoryOptions.map((category) => (
               <TabsTrigger
@@ -158,108 +154,108 @@ const Widgets = ({ categoryOptions }: WidgetFormType) => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
-          <div style={{ marginTop: 15 }}>
+          <div  style={{ marginTop: 15 }} className="flex flex-col h-full">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(handleAddWidget)}
                 className="flex flex-col h-full"
               >
-                <div style={{ height: "65vh" }} className="">
-                  <FormField
-                    control={form.control}
-                    name="items"
-                    render={() => (
-                      <FormItem style={{ flex: 1 }} className="flex-grow">
-                        {/* Allow form item to grow */}
-                        {filteredWidgets.map((widget) => (
-                          <FormField
-                            key={widget.widgetId}
-                            control={form.control}
-                            name="items"
-                            render={({ field }) => {
-                              const isSelected = field.value.some(
-                                (w) =>
-                                  w.widgetId === widget.widgetId && w.selected
-                              );
+                <div className="flex h-full flex-col justify-between">
+                  <div  className="">
+                    <FormField
+                      control={form.control}
+                      name="items"
+                      render={() => (
+                        <FormItem style={{ flex: 1 }} className="flex-grow">
+                          {/* Allow form item to grow */}
+                          {filteredWidgets.map((widget) => (
+                            <FormField
+                              key={widget.widgetId}
+                              control={form.control}
+                              name="items"
+                              render={({ field }) => {
+                                const isSelected = field.value.some(
+                                  (w) =>
+                                    w.widgetId === widget.widgetId && w.selected
+                                );
 
-                              return (
-                                <TabsContent
-                                  className="w-full"
-                                  key={widget.widgetId}
-                                  value={widget.categoryId}
-                                >
-                                  <FormItem
-                                    style={{ paddingRight: 10 }}
-                                    className="w-full flex flex-row items-start space-x-3 space-y-0 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground py-2 px-2"
+                                return (
+                                  <TabsContent
+                                    className="w-full"
+                                    key={widget.widgetId}
+                                    value={widget.categoryId}
                                   >
-                                    <div className="w-full gap-3 flex flex-row items-start">
-                                      <FormControl>
-                                        <Checkbox
-                                          style={{ marginLeft: 10 }}
-                                          checked={isSelected}
-                                          onCheckedChange={(checked) => {
-                                            console.log(
-                                              "checked  --> ",
-                                              checked
-                                            );
-
-                                            const updatedItems =
-                                              field.value.map((w) =>
-                                                w.widgetId === widget.widgetId
-                                                  ? {
-                                                      ...w,
-                                                      selected: checked,
-                                                    }
-                                                  : w
+                                    <FormItem
+                                      style={{ paddingRight: 10 }}
+                                      className="w-full flex flex-row items-start space-x-3 space-y-0 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground py-2 px-2"
+                                    >
+                                      <div className="w-full gap-3 flex flex-row items-start">
+                                        <FormControl>
+                                          <Checkbox
+                                            style={{ marginLeft: 10 }}
+                                            checked={isSelected}
+                                            onCheckedChange={(checked) => {
+                                              console.log(
+                                                "checked  --> ",
+                                                checked
                                               );
 
-                                            field.onChange(updatedItems);
-                                          }}
-                                        />
-                                      </FormControl>
-                                      <FormLabel className="text-xs font-normal hover:cursor-pointer">
-                                        {widget.widgetName}
-                                      </FormLabel>
-                                    </div>
-                                    <Actions
-                                      onConfirm={() =>
-                                        handleDeleteWidget(
-                                          widget.categoryId,
-                                          widget.widgetId
-                                        )
-                                      }
-                                    />
-                                  </FormItem>
-                                </TabsContent>
-                              );
-                            }}
-                          />
-                        ))}
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                {/* Submit button container */}
-                <div
-                  style={{
-                    marginTop: 20,
-                    height: 40,
-                    display: "flex",
-                    justifyContent: "end",
-                  }}
-                >
-                  <Button
-                    onClick={() => onClose()}
-                    className="mr-2"
-                    variant="outline"
-                    type="button"
+                                              const updatedItems =
+                                                field.value.map((w) =>
+                                                  w.widgetId === widget.widgetId
+                                                    ? {
+                                                        ...w,
+                                                        selected: checked,
+                                                      }
+                                                    : w
+                                                );
+
+                                              field.onChange(updatedItems);
+                                            }}
+                                          />
+                                        </FormControl>
+                                        <FormLabel className="text-xs font-normal hover:cursor-pointer">
+                                          {widget.widgetName}
+                                        </FormLabel>
+                                      </div>
+                                      <Actions
+                                        onConfirm={() =>
+                                          handleDeleteWidget(
+                                            widget.categoryId,
+                                            widget.widgetId
+                                          )
+                                        }
+                                      />
+                                    </FormItem>
+                                  </TabsContent>
+                                );
+                              }}
+                            />
+                          ))}
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  {/* Submit button container */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "end",
+                    }}
                   >
-                    Cancel
-                  </Button>
-                  <Button className="" type="submit">
-                    Submit
-                  </Button>
+                    <Button
+                      onClick={() => onClose()}
+                      className="mr-2"
+                      variant="outline"
+                      type="button"
+                    >
+                      Cancel
+                    </Button>
+                    <Button className="" type="submit">
+                      Submit
+                    </Button>
+                  </div>
                 </div>
               </form>
             </Form>
